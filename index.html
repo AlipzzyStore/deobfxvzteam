@@ -5,226 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XvZ Deobfuscator</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Courier New', monospace;
-            background: #0a0e27;
-            color: #e0e0e0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            color: #00ff88;
-            font-size: 2em;
-            margin-bottom: 5px;
-        }
-
-        .info {
-            color: #64c8ff;
-            font-size: 0.9em;
-        }
-
-        .content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .panel {
-            background: #1a1f3a;
-            border: 1px solid #00ff88;
-            border-radius: 5px;
-            padding: 15px;
-        }
-
-        .panel-title {
-            color: #00ff88;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        textarea {
-            width: 100%;
-            height: 400px;
-            background: #0f1425;
-            border: 1px solid #00ff88;
-            border-radius: 3px;
-            padding: 10px;
-            color: #00ff88;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85em;
-            resize: vertical;
-            line-height: 1.4;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: #64c8ff;
-            box-shadow: 0 0 8px rgba(100, 200, 255, 0.3);
-        }
-
-        .buttons {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-            flex-wrap: wrap;
-        }
-
-        button {
-            flex: 1;
-            min-width: 80px;
-            padding: 8px 12px;
-            border: 1px solid #00ff88;
-            background: #0f1425;
-            color: #00ff88;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 0.8em;
-            font-weight: bold;
-            transition: 0.2s;
-            font-family: inherit;
-        }
-
-        button:hover {
-            background: #00ff88;
-            color: #0a0e27;
-        }
-
-        .drop-zone {
-            border: 2px dashed #00ff88;
-            border-radius: 3px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            margin-bottom: 12px;
-            color: #64c8ff;
-            font-size: 0.9em;
-            transition: 0.2s;
-        }
-
-        .drop-zone:hover {
-            background: rgba(0, 255, 136, 0.1);
-        }
-
-        .drop-zone.active {
-            background: rgba(0, 255, 136, 0.2);
-            border-color: #64c8ff;
-        }
-
-        #fileInput {
-            display: none;
-        }
-
-        .techniques {
-            grid-column: 1 / -1;
-            background: #1a1f3a;
-            border: 1px solid #00ff88;
-            border-radius: 5px;
-            padding: 15px;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 8px;
-        }
-
-        .tech-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85em;
-        }
-
-        .tech-item input {
-            cursor: pointer;
-            accent-color: #00ff88;
-            width: 16px;
-            height: 16px;
-        }
-
-        .tech-item label {
-            cursor: pointer;
-        }
-
-        .stats {
-            grid-column: 1 / -1;
-            background: #1a1f3a;
-            border: 1px solid #00ff88;
-            border-radius: 5px;
-            padding: 12px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-label {
-            color: #64c8ff;
-            font-size: 0.8em;
-            margin-bottom: 3px;
-        }
-
-        .stat-value {
-            color: #00ff88;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-
-        .message {
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 3px;
-            font-size: 0.85em;
-            display: none;
-        }
-
-        .message.success {
-            display: block;
-            background: rgba(0, 255, 136, 0.2);
-            border: 1px solid #00ff88;
-            color: #00ff88;
-        }
-
-        .message.info {
-            display: block;
-            background: rgba(100, 200, 255, 0.2);
-            border: 1px solid #64c8ff;
-            color: #64c8ff;
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            textarea {
-                height: 250px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Courier New', monospace; background: #0a0e27; color: #e0e0e0; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { color: #00ff88; font-size: 2em; margin-bottom: 5px; }
+        .info { color: #64c8ff; font-size: 0.9em; }
+        .content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .panel { background: #1a1f3a; border: 1px solid #00ff88; border-radius: 5px; padding: 15px; }
+        .panel-title { color: #00ff88; margin-bottom: 10px; font-weight: bold; }
+        textarea { width: 100%; height: 400px; background: #0f1425; border: 1px solid #00ff88; border-radius: 3px; padding: 10px; color: #00ff88; font-family: 'Courier New', monospace; font-size: 0.85em; resize: vertical; line-height: 1.4; }
+        textarea:focus { outline: none; border-color: #64c8ff; box-shadow: 0 0 8px rgba(100, 200, 255, 0.3); }
+        .buttons { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+        button { flex: 1; min-width: 80px; padding: 8px 12px; border: 1px solid #00ff88; background: #0f1425; color: #00ff88; border-radius: 3px; cursor: pointer; font-size: 0.8em; font-weight: bold; transition: 0.2s; }
+        button:hover { background: #00ff88; color: #0a0e27; }
+        .drop-zone { border: 2px dashed #00ff88; border-radius: 3px; padding: 15px; text-align: center; cursor: pointer; margin-bottom: 12px; color: #64c8ff; }
+        .drop-zone:hover { background: rgba(0, 255, 136, 0.1); }
+        .drop-zone.active { background: rgba(0, 255, 136, 0.2); }
+        #fileInput { display: none; }
+        .techniques { grid-column: 1 / -1; background: #1a1f3a; border: 1px solid #00ff88; border-radius: 5px; padding: 15px; }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+        .tech-item { display: flex; align-items: center; gap: 6px; font-size: 0.85em; }
+        .tech-item input { cursor: pointer; accent-color: #00ff88; }
+        .tech-item label { cursor: pointer; }
+        .stats { grid-column: 1 / -1; background: #1a1f3a; border: 1px solid #00ff88; border-radius: 5px; padding: 12px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .stat-item { text-align: center; }
+        .stat-label { color: #64c8ff; font-size: 0.8em; margin-bottom: 3px; }
+        .stat-value { color: #00ff88; font-size: 1.2em; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -236,454 +43,239 @@
 
         <div class="content">
             <div class="panel">
-                <div class="panel-title">📥 INPUT CODE</div>
-                
-                <div class="drop-zone" id="dropZone">
-                    Click to upload or drag file here
-                </div>
-                <input type="file" id="fileInput" accept=".js,.py,.lua,.html,.txt" />
-
-                <textarea id="inputCode" placeholder="Paste obfuscated code here..."></textarea>
-                
+                <div class="panel-title">📥 INPUT</div>
+                <div class="drop-zone" id="dropZone">Click or drag file</div>
+                <input type="file" id="fileInput" />
+                <textarea id="inputCode" placeholder="Paste obfuscated code..."></textarea>
                 <div class="buttons">
-                    <button type="button" id="deobBtn">🚀 DEOBFUSCATE</button>
-                    <button type="button" id="clearBtn">CLEAR</button>
+                    <button id="deobBtn">🚀 DEOBFUSCATE</button>
+                    <button id="clearBtn">CLEAR</button>
                 </div>
-                <div id="inputMsg" class="message"></div>
             </div>
 
             <div class="panel">
-                <div class="panel-title">📤 OUTPUT CODE</div>
-                <textarea id="outputCode" placeholder="Result will appear here..." readonly></textarea>
-                
+                <div class="panel-title">📤 OUTPUT</div>
+                <textarea id="outputCode" readonly placeholder="Result..."></textarea>
                 <div class="buttons">
-                    <button type="button" id="exportBtn">EXPORT.TXT</button>
-                    <button type="button" id="copyBtn">COPY</button>
+                    <button id="expBtn">EXPORT</button>
+                    <button id="cpyBtn">COPY</button>
                 </div>
-                <div id="outputMsg" class="message"></div>
             </div>
 
             <div class="techniques">
                 <div class="panel-title">🛠️ TECHNIQUES</div>
                 <div class="tech-grid">
-                    <div class="tech-item">
-                        <input type="checkbox" id="hexEscape" checked />
-                        <label for="hexEscape">Hex (\xHH)</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="unicodeEscape" checked />
-                        <label for="unicodeEscape">Unicode (\uHHHH)</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="octalEscape" checked />
-                        <label for="octalEscape">Octal (\OOO)</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="base64" checked />
-                        <label for="base64">Base64</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="urlDecode" checked />
-                        <label for="urlDecode">URL Decode</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="htmlEntity" checked />
-                        <label for="htmlEntity">HTML Entity</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="rot13" checked />
-                        <label for="rot13">ROT13</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="fromCharCode" checked />
-                        <label for="fromCharCode">fromCharCode</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="stringConcat" checked />
-                        <label for="stringConcat">String Concat</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="arrayJoin" checked />
-                        <label for="arrayJoin">Array Join</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="evalStrip" checked />
-                        <label for="evalStrip">Eval Strip</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="commentRemove" checked />
-                        <label for="commentRemove">Remove Comments</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="urlDefang" checked />
-                        <label for="urlDefang">URL Defang</label>
-                    </div>
-                    <div class="tech-item">
-                        <input type="checkbox" id="beautify" checked />
-                        <label for="beautify">Beautify</label>
-                    </div>
+                    <div class="tech-item"><input type="checkbox" id="t1" checked /><label for="t1">Hex</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t2" checked /><label for="t2">Unicode</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t3" checked /><label for="t3">Octal</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t4" checked /><label for="t4">Base64</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t5" checked /><label for="t5">URL</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t6" checked /><label for="t6">HTML</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t7" checked /><label for="t7">ROT13</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t8" checked /><label for="t8">fromCharCode</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t9" checked /><label for="t9">Concat</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t10" checked /><label for="t10">Array Join</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t11" checked /><label for="t11">Strip Eval</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t12" checked /><label for="t12">Comments</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t13" checked /><label for="t13">Defang</label></div>
+                    <div class="tech-item"><input type="checkbox" id="t14" checked /><label for="t14">Beautify</label></div>
                 </div>
             </div>
 
             <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-label">Input Size</div>
-                    <div class="stat-value" id="inputSize">0</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Output Size</div>
-                    <div class="stat-value" id="outputSize">0</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Reduced</div>
-                    <div class="stat-value" id="reduced">0%</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Time</div>
-                    <div class="stat-value" id="procTime">0ms</div>
-                </div>
+                <div class="stat-item"><div class="stat-label">Input</div><div class="stat-value" id="s1">0</div></div>
+                <div class="stat-item"><div class="stat-label">Output</div><div class="stat-value" id="s2">0</div></div>
+                <div class="stat-item"><div class="stat-label">Reduced</div><div class="stat-value" id="s3">0%</div></div>
+                <div class="stat-item"><div class="stat-label">Time</div><div class="stat-value" id="s4">0ms</div></div>
             </div>
         </div>
     </div>
 
     <script>
-        // DOM Elements
-        const dropZone = document.getElementById('dropZone');
-        const fileInput = document.getElementById('fileInput');
-        const inputCode = document.getElementById('inputCode');
-        const outputCode = document.getElementById('outputCode');
-        const deobBtn = document.getElementById('deobBtn');
-        const clearBtn = document.getElementById('clearBtn');
-        const exportBtn = document.getElementById('exportBtn');
-        const copyBtn = document.getElementById('copyBtn');
+        const inp = document.getElementById('inputCode');
+        const out = document.getElementById('outputCode');
+        const file = document.getElementById('fileInput');
+        const drop = document.getElementById('dropZone');
 
-        // File upload handlers
-        dropZone.addEventListener('click', function() {
-            fileInput.click();
-        });
-
-        fileInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    inputCode.value = event.target.result;
-                    updateStats();
-                };
-                reader.readAsText(file);
+        drop.onclick = () => file.click();
+        file.onchange = (e) => {
+            if (e.target.files[0]) {
+                const r = new FileReader();
+                r.onload = (ev) => { inp.value = ev.target.result; update(); };
+                r.readAsText(e.target.files[0]);
             }
-        });
+        };
 
-        // Drag and drop
-        dropZone.addEventListener('dragover', function(e) {
+        drop.ondragover = (e) => { e.preventDefault(); drop.classList.add('active'); };
+        drop.ondragleave = () => drop.classList.remove('active');
+        drop.ondrop = (e) => {
             e.preventDefault();
-            e.stopPropagation();
-            dropZone.classList.add('active');
-        });
-
-        dropZone.addEventListener('dragleave', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            dropZone.classList.remove('active');
-        });
-
-        dropZone.addEventListener('drop', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            dropZone.classList.remove('active');
-
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                const file = files[0];
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    inputCode.value = event.target.result;
-                    updateStats();
-                };
-                reader.readAsText(file);
+            drop.classList.remove('active');
+            if (e.dataTransfer.files[0]) {
+                const r = new FileReader();
+                r.onload = (ev) => { inp.value = ev.target.result; update(); };
+                r.readAsText(e.dataTransfer.files[0]);
             }
-        });
+        };
 
-        // Deobfuscation functions
-        function decodeHex(str) {
-            return str.replace(/\\x([0-9A-Fa-f]{2})/g, (match, hex) => {
-                try {
-                    return String.fromCharCode(parseInt(hex, 16));
-                } catch (e) {
-                    return match;
-                }
-            });
-        }
-
-        function decodeUnicode(str) {
-            str = str.replace(/\\u([0-9A-Fa-f]{4})/g, (match, hex) => {
-                try {
-                    return String.fromCharCode(parseInt(hex, 16));
-                } catch (e) {
-                    return match;
-                }
-            });
-            str = str.replace(/\\U([0-9A-Fa-f]{8})/g, (match, hex) => {
-                try {
-                    return String.fromCodePoint(parseInt(hex, 16));
-                } catch (e) {
-                    return match;
-                }
-            });
-            return str;
-        }
-
-        function decodeOctal(str) {
-            return str.replace(/\\([0-7]{1,3})/g, (match, octal) => {
-                try {
-                    return String.fromCharCode(parseInt(octal, 8));
-                } catch (e) {
-                    return match;
-                }
-            });
-        }
-
-        function decodeBase64(str) {
-            let iterations = 0;
-            while (iterations < 10) {
-                try {
-                    const decoded = atob(str);
-                    if (decoded === str || decoded.length === 0) break;
-                    str = decoded;
-                    iterations++;
-                } catch (e) {
-                    break;
-                }
-            }
-            return str;
-        }
-
-        function decodeURL(str) {
+        function deobfuscate() {
             try {
-                return decodeURIComponent(str);
-            } catch (e) {
-                return str;
-            }
-        }
+                const t0 = performance.now();
+                let code = inp.value;
+                
+                if (!code.trim()) {
+                    alert('Masukkan code!');
+                    return;
+                }
 
-        function decodeHTMLEntity(str) {
-            const textarea = document.createElement('textarea');
-            textarea.innerHTML = str;
-            return textarea.value;
-        }
-
-        function rot13(str) {
-            return str.replace(/[a-zA-Z]/g, function(c) {
-                return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
-            });
-        }
-
-        function decodeFromCharCode(str) {
-            str = str.replace(/String\.fromCharCode\(([^)]+)\)/g, (match, args) => {
-                try {
-                    const codes = args.split(',').map(x => {
-                        x = x.trim();
-                        if (x.startsWith('0x')) return parseInt(x, 16);
-                        return parseInt(x);
+                if (document.getElementById('t1').checked) {
+                    code = code.replace(/\\x([0-9A-Fa-f]{2})/g, (m, h) => String.fromCharCode(parseInt(h, 16)));
+                }
+                
+                if (document.getElementById('t2').checked) {
+                    code = code.replace(/\\u([0-9A-Fa-f]{4})/g, (m, h) => String.fromCharCode(parseInt(h, 16)));
+                }
+                
+                if (document.getElementById('t3').checked) {
+                    code = code.replace(/\\([0-7]{1,3})/g, (m, o) => String.fromCharCode(parseInt(o, 8)));
+                }
+                
+                if (document.getElementById('t4').checked) {
+                    try {
+                        let tmp = code;
+                        for (let i = 0; i < 5; i++) {
+                            try {
+                                const dec = atob(tmp);
+                                if (dec === tmp) break;
+                                tmp = dec;
+                            } catch (e) { break; }
+                        }
+                        code = tmp;
+                    } catch (e) {}
+                }
+                
+                if (document.getElementById('t5').checked) {
+                    try { code = decodeURIComponent(code); } catch (e) {}
+                }
+                
+                if (document.getElementById('t6').checked) {
+                    const ta = document.createElement('textarea');
+                    ta.innerHTML = code;
+                    code = ta.value;
+                }
+                
+                if (document.getElementById('t7').checked) {
+                    code = code.replace(/[a-zA-Z]/g, c => String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26));
+                }
+                
+                if (document.getElementById('t8').checked) {
+                    code = code.replace(/String\.fromCharCode\(([^)]+)\)/g, (m, a) => {
+                        try {
+                            return '"' + a.split(',').map(x => String.fromCharCode(parseInt(x.trim()))).join('') + '"';
+                        } catch (e) { return m; }
                     });
-                    return '"' + codes.map(c => String.fromCharCode(c)).join('') + '"';
-                } catch (e) {
-                    return match;
                 }
-            });
-
-            str = str.replace(/String\['fromCharCode'\]\(([^)]+)\)/g, (match, args) => {
-                try {
-                    const codes = args.split(',').map(x => parseInt(x.trim()));
-                    return '"' + codes.map(c => String.fromCharCode(c)).join('') + '"';
-                } catch (e) {
-                    return match;
-                }
-            });
-
-            return str;
-        }
-
-        function decodeStringConcat(str) {
-            let prevLen = -1;
-            while (prevLen !== str.length && prevLen !== -1) {
-                prevLen = str.length;
-                str = str.replace(/"([^"]*)"\s*\+\s*"([^"]*)"/g, (match, a, b) => {
-                    return '"' + a + b + '"';
-                });
-                str = str.replace(/'([^']*)'\s*\+\s*'([^']*)'/g, (match, a, b) => {
-                    return "'" + a + b + "'";
-                });
-            }
-            return str;
-        }
-
-        function decodeArrayJoin(str) {
-            return str.replace(/\[(['"][^'"]*['"],?\s*)+\]\.join\(['"]([^'"]*)['\"]\)/g, (match) => {
-                try {
-                    const arrayMatch = match.match(/['"]([^'"]*)['"]/g);
-                    if (arrayMatch) {
-                        const joined = arrayMatch.map(s => s.slice(1, -1)).join('');
-                        return '"' + joined + '"';
+                
+                if (document.getElementById('t9').checked) {
+                    let prev = -1;
+                    while (prev !== code.length && prev !== -1) {
+                        prev = code.length;
+                        code = code.replace(/"([^"]*)"\s*\+\s*"([^"]*)"/g, '"$1$2"');
+                        code = code.replace(/'([^']*)'\s*\+\s*'([^']*)'/g, "'$1$2'");
                     }
-                } catch (e) {}
-                return match;
-            });
-        }
-
-        function stripEval(str) {
-            str = str.replace(/eval\s*\(\s*([^;)]+)\s*\)/g, '$1');
-            str = str.replace(/new\s+Function\s*\(\s*([^)]+)\s*\)/g, '$1');
-            str = str.replace(/Function\s*\(\s*([^)]+)\s*\)/g, '$1');
-            return str;
-        }
-
-        function removeComments(str) {
-            str = str.replace(/\/\/.*$/gm, '');
-            str = str.replace(/\/\*[\s\S]*?\*\//g, '');
-            return str;
-        }
-
-        function defangURL(str) {
-            return str
-                .replace(/hxxps?:\/\//gi, 'https://')
-                .replace(/\[\.\]/g, '.')
-                .replace(/\[\:\]/g, ':')
-                .replace(/\[\:\/\/\]/g, '://')
-                .replace(/\[@\]/g, '@')
-                .replace(/\[at\]/gi, '@')
-                .replace(/meow:\/\//gi, 'https://')
-                .replace(/\{\.}/g, '.')
-                .replace(/\(\.)/g, '.');
-        }
-
-        function beautify(str) {
-            let result = '';
-            let indent = 0;
-            let inString = false;
-            let stringChar = '';
-
-            for (let i = 0; i < str.length; i++) {
-                const char = str[i];
-                const prevChar = i > 0 ? str[i - 1] : '';
-
-                if ((char === '"' || char === "'" || char === '`') && prevChar !== '\\') {
-                    inString = !inString;
-                    stringChar = inString ? char : '';
-                    result += char;
-                } else if (!inString) {
-                    if (char === '{') {
-                        result += ' {\n' + '  '.repeat(++indent);
-                    } else if (char === '}') {
-                        result = result.replace(/\s+$/, '');
-                        result += '\n' + '  '.repeat(--indent) + '}';
-                    } else if (char === ';') {
-                        result += ';\n' + '  '.repeat(indent);
-                    } else if (char === ',' && str[i + 1] !== ' ') {
-                        result += ', ';
-                    } else {
-                        result += char;
-                    }
-                } else {
-                    result += char;
                 }
-            }
+                
+                if (document.getElementById('t10').checked) {
+                    code = code.replace(/\[(['"][^'"]*['"],?\s*)+\]\.join\(["']([^"']*)["']\)/g, m => {
+                        try {
+                            const arr = m.match(/['"]([^'"]*)['"]/g);
+                            if (arr) return '"' + arr.map(s => s.slice(1, -1)).join('') + '"';
+                        } catch (e) {}
+                        return m;
+                    });
+                }
+                
+                if (document.getElementById('t11').checked) {
+                    code = code.replace(/eval\s*\(\s*([^)]+)\s*\)/g, '$1');
+                    code = code.replace(/Function\s*\(\s*([^)]+)\s*\)/g, '$1');
+                }
+                
+                if (document.getElementById('t12').checked) {
+                    code = code.replace(/\/\/.*$/gm, '');
+                    code = code.replace(/\/\*[\s\S]*?\*\//g, '');
+                }
+                
+                if (document.getElementById('t13').checked) {
+                    code = code.replace(/hxxps?:\/\//gi, 'https://');
+                    code = code.replace(/\[\.\]/g, '.');
+                    code = code.replace(/\[@\]/g, '@');
+                }
+                
+                if (document.getElementById('t14').checked) {
+                    let res = '';
+                    let indent = 0;
+                    let inStr = false;
+                    for (let i = 0; i < code.length; i++) {
+                        const ch = code[i];
+                        const prev = i > 0 ? code[i - 1] : '';
+                        if ((ch === '"' || ch === "'" || ch === '`') && prev !== '\\') {
+                            inStr = !inStr;
+                            res += ch;
+                        } else if (!inStr) {
+                            if (ch === '{') {
+                                indent++;
+                                res += ' {\n' + '  '.repeat(Math.max(0, indent));
+                            } else if (ch === '}') {
+                                indent = Math.max(0, indent - 1);
+                                res = res.trimEnd() + '\n' + '  '.repeat(indent) + '}';
+                            } else if (ch === ';') {
+                                res += ';\n' + '  '.repeat(Math.max(0, indent));
+                            } else {
+                                res += ch;
+                            }
+                        } else {
+                            res += ch;
+                        }
+                    }
+                    code = res.trim();
+                }
 
-            return result.trim();
+                out.value = code;
+                const t1 = performance.now();
+                document.getElementById('s4').textContent = (t1 - t0).toFixed(2) + 'ms';
+                update();
+            } catch (err) {
+                alert('Error: ' + err.message);
+                console.error(err);
+            }
         }
 
-        function updateStats() {
-            const inSize = inputCode.value.length;
-            const outSize = outputCode.value.length;
-            const reduced = inSize > 0 ? ((1 - outSize / inSize) * 100).toFixed(0) : 0;
-
-            document.getElementById('inputSize').textContent = formatSize(inSize);
-            document.getElementById('outputSize').textContent = formatSize(outSize);
-            document.getElementById('reduced').textContent = reduced + '%';
+        function update() {
+            const is = inp.value.length;
+            const os = out.value.length;
+            const red = is > 0 ? ((1 - os / is) * 100).toFixed(0) : 0;
+            document.getElementById('s1').textContent = is > 1024 ? (is / 1024).toFixed(1) + 'KB' : is + 'B';
+            document.getElementById('s2').textContent = os > 1024 ? (os / 1024).toFixed(1) + 'KB' : os + 'B';
+            document.getElementById('s3').textContent = red + '%';
         }
 
-        function formatSize(bytes) {
-            if (bytes === 0) return '0B';
-            if (bytes < 1024) return bytes + 'B';
-            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + 'KB';
-            return (bytes / (1024 * 1024)).toFixed(1) + 'MB';
-        }
-
-        function showMsg(id, text, type) {
-            const msg = document.getElementById(id);
-            msg.textContent = text;
-            msg.className = 'message ' + type;
-            setTimeout(() => {
-                msg.className = 'message';
-            }, 3000);
-        }
-
-        // Button handlers
-        deobBtn.addEventListener('click', function() {
-            const start = performance.now();
-            let code = inputCode.value;
-
-            if (!code.trim()) {
-                showMsg('inputMsg', 'Enter code first!', 'info');
-                return;
-            }
-
-            try {
-                if (document.getElementById('hexEscape').checked) code = decodeHex(code);
-                if (document.getElementById('unicodeEscape').checked) code = decodeUnicode(code);
-                if (document.getElementById('octalEscape').checked) code = decodeOctal(code);
-                if (document.getElementById('base64').checked) code = decodeBase64(code);
-                if (document.getElementById('urlDecode').checked) code = decodeURL(code);
-                if (document.getElementById('htmlEntity').checked) code = decodeHTMLEntity(code);
-                if (document.getElementById('rot13').checked) code = rot13(code);
-                if (document.getElementById('fromCharCode').checked) code = decodeFromCharCode(code);
-                if (document.getElementById('stringConcat').checked) code = decodeStringConcat(code);
-                if (document.getElementById('arrayJoin').checked) code = decodeArrayJoin(code);
-                if (document.getElementById('evalStrip').checked) code = stripEval(code);
-                if (document.getElementById('commentRemove').checked) code = removeComments(code);
-                if (document.getElementById('urlDefang').checked) code = defangURL(code);
-                if (document.getElementById('beautify').checked) code = beautify(code);
-
-                outputCode.value = code;
-                updateStats();
-
-                const time = (performance.now() - start).toFixed(2);
-                document.getElementById('procTime').textContent = time + 'ms';
-                showMsg('outputMsg', '✓ Done!', 'success');
-            } catch (error) {
-                showMsg('outputMsg', '✗ Error: ' + error.message, 'info');
-            }
-        });
-
-        clearBtn.addEventListener('click', function() {
-            inputCode.value = '';
-            outputCode.value = '';
-            updateStats();
-        });
-
-        exportBtn.addEventListener('click', function() {
-            if (!outputCode.value.trim()) {
-                showMsg('outputMsg', 'No code!', 'info');
-                return;
-            }
-            const link = document.createElement('a');
-            link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(outputCode.value);
-            link.download = 'deobfuscated.txt';
-            link.click();
-            showMsg('outputMsg', '✓ Downloaded!', 'success');
-        });
-
-        copyBtn.addEventListener('click', function() {
-            if (!outputCode.value.trim()) {
-                showMsg('outputMsg', 'No code!', 'info');
-                return;
-            }
-            outputCode.select();
+        document.getElementById('deobBtn').onclick = deobfuscate;
+        document.getElementById('clearBtn').onclick = () => { inp.value = ''; out.value = ''; update(); };
+        document.getElementById('expBtn').onclick = () => {
+            if (!out.value.trim()) { alert('No output!'); return; }
+            const a = document.createElement('a');
+            a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(out.value);
+            a.download = 'deobfuscated.txt';
+            a.click();
+        };
+        document.getElementById('cpyBtn').onclick = () => {
+            if (!out.value.trim()) { alert('No output!'); return; }
+            out.select();
             document.execCommand('copy');
-            showMsg('outputMsg', '✓ Copied!', 'success');
-        });
+            alert('Copied!');
+        };
 
-        inputCode.addEventListener('input', updateStats);
+        inp.oninput = update;
     </script>
 </body>
 </html>
